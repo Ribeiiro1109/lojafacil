@@ -19,3 +19,14 @@ export async function buscarProdutos(): Promise<Produto[]> {
   const dados: Produto[] = await resposta.json();
   return dados;
 }
+
+export async function buscarProduto(id: number | string): Promise<Produto> {
+  const resposta = await fetch(`${URL_BASE}/products/${id}`);
+
+  if (!resposta.ok) {
+    throw new Error('Falha ao carregar o produto.');
+  }
+
+  const dado: Produto = await resposta.json();
+  return dado;
+}

@@ -38,7 +38,12 @@ export default function Catalogo() {
 
   function renderizarProduto({ item }: { item: Produto }) {
     return (
-      <View style={styles.card}>
+      <Pressable
+        style={styles.card}
+        onPress={() =>
+          router.push({ pathname: '/produto/[id]', params: { id: item.id } })
+        }
+      >
         <Image
           source={{ uri: item.image }}
           style={styles.imagem}
@@ -51,7 +56,7 @@ export default function Catalogo() {
           <Text style={styles.categoria}>{item.category}</Text>
           <Text style={styles.preco}>US$ {item.price.toFixed(2)}</Text>
         </View>
-      </View>
+      </Pressable>
     );
   }
 
