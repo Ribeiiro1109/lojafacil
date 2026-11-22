@@ -1,3 +1,4 @@
+import { Link } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { cadastrarUsuario, listarUsuarios, Usuario } from '../database';
@@ -37,6 +38,10 @@ export default function Login() {
           {u.id} - {u.nome} - {u.email}
         </Text>
       ))}
+
+      <Link href="/cadastro" style={styles.link}>
+        Ir para o cadastro
+      </Link>
     </View>
   );
 }
@@ -67,5 +72,11 @@ const styles = StyleSheet.create({
   },
   mensagem: {
     marginVertical: 10,
+  },
+
+  link: {
+    marginTop: 20,
+    color: '#1E5BFF',
+    textDecorationLine: 'underline',
   },
 });
