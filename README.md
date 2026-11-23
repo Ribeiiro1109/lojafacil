@@ -1,56 +1,91 @@
-# Welcome to your Expo app 👋
+# LojaFácil
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo mobile de catálogo de produtos, desenvolvido como trabalho acadêmico.
 
-## Get started
+**Aluno:** João Victor Ribeiro Soares
+**Curso / Disciplina:** Programação Para Dispositivos Móveis em Android
 
-1. Install dependencies
 
-   ```bash
+## Sobre o projeto
+
+O LojaFácil permite que o usuário crie uma conta, faça login e navegue por um catálogo de produtos com imagens, preços e categorias. Ao tocar em um produto, é possível ver os detalhes completos.
+
+## Requisitos atendidos
+
+- Aplicativo com tema livre (catálogo de produtos).
+- Banco de dados SQLite.
+- Tela de cadastro de usuários, salvos no SQLite.
+- Tela de login, que consulta o SQLite.
+- Lista de produtos com imagens.
+- Tela de detalhes do produto.
+- Consulta a uma API externa (Fake Store API).
+
+## Tecnologias utilizadas
+
+| Pacote | Para que serve |
+|---|---|
+| expo | Framework para desenvolver e executar o aplicativo |
+| react | Criação de componentes e controle de estados |
+| react-native | Telas, botões, listas e campos |
+| expo-router | Navegação entre as telas |
+| expo-sqlite | Banco de dados SQLite |
+
+Recursos do React Native utilizados: `useState`, `useEffect`, `FlatList`, `Image`, `TextInput`, `Pressable`, `StyleSheet` e `fetch`.
+
+Os demais pacotes listados no `package.json` foram instalados automaticamente pelo template oficial do Expo (`create-expo-app`).
+
+## API utilizada
+
+[Fake Store API](https://fakestoreapi.com/products) — fornece produtos, imagens, preços (em dólar), categorias e descrições.
+
+## Estrutura do projeto
+
+```
+LojaFacil/
+├── assets/
+├── src/
+│   ├── app/
+│   │   ├── _layout.tsx        Configuração da navegação (Stack)
+│   │   ├── index.tsx          Tela de login
+│   │   ├── cadastro.tsx       Tela de cadastro
+│   │   ├── catalogo.tsx       Catálogo de produtos
+│   │   └── produto/
+│   │       └── [id].tsx       Detalhes do produto
+│   ├── api.ts                 Consultas à Fake Store API
+│   └── database.ts            Banco SQLite (usuários)
+├── app.json
+├── package.json
+└── package-lock.json
+```
+
+## Fluxo do aplicativo
+
+Login → Cadastro → Login → Catálogo → Detalhes do produto
+
+## Como executar
+
+Pré-requisito: [Node.js](https://nodejs.org) instalado.
+
+1. Abra o terminal na pasta do projeto.
+2. Instale as dependências:
+
+   ```
    npm install
    ```
 
-2. Start the app
+3. Inicie o projeto:
 
-   ```bash
+   ```
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+4. Abra o aplicativo:
+   - **Celular:** instale o app **Expo Go** e escaneie o QR Code (celular e computador na mesma rede Wi-Fi).
+   - **Emulador Android:** pressione `a` no terminal.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Observações
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
-
-### Other setup steps
-
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- O aplicativo deve ser testado no **celular ou emulador**. O `expo-sqlite` não está configurado para o navegador (versão web).
+- O banco de dados é criado no próprio dispositivo na primeira execução. Na primeira vez, é necessário **criar uma conta** na tela de cadastro antes de fazer login.
+- As senhas são salvas em texto simples no SQLite, por simplicidade acadêmica. Em um aplicativo real, elas seriam criptografadas.
+- Os preços são exibidos em dólar (US$), do jeito que a API os fornece.
